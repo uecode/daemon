@@ -1,6 +1,6 @@
 <?php
 
-namespace Uecode\DaemonBundle\System\Daemon\OS;
+namespace Uecode\Daemon\OS;
 
 /**
  * A System_Daemon_OS driver for Fedora based Operating Systems
@@ -16,7 +16,7 @@ namespace Uecode\DaemonBundle\System\Daemon\OS;
  * *
  */
 
-use Uecode\DaemonBundle\System\Daemon\OS\RedHat;
+use Uecode\Daemon\OS\RedHat;
 
 class Fedora extends RedHat
 {

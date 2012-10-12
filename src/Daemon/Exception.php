@@ -1,6 +1,6 @@
 <?php
 
-namespace Uecode\DaemonBundle\System\Daemon;
+namespace Uecode\Daemon;
 
 /**
  * An exception thrown by System_Daemon when it encounters an unrecoverable error.

@@ -1,6 +1,6 @@
 <?php
 
-namespace Uecode\DaemonBundle\System\Daemon\OS;
+namespace Uecode\Daemon\OS;
 
 /**
  * A System_Daemon_OS driver for Ubuntu. Based on Debian
@@ -15,7 +15,7 @@ namespace Uecode\DaemonBundle\System\Daemon\OS;
  * * 
  */
 
-use Uecode\DaemonBundle\System\Daemon\OS\Debian; 
+use Uecode\Daemon\OS\Debian; 
 
 class Ubuntu extends Debian
 {

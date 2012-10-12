@@ -1,6 +1,6 @@
 <?php
 
-namespace Uecode\DaemonBundle\System\Daemon;
+namespace Uecode\Daemon;
 
 /**
  * Mechanism for validating, getting and setting a predefined set of options.
