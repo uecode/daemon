@@ -23,7 +23,8 @@
 	},
 	"autoload":    {
 		"psr-0": {
-			"Uecode\\Daemon": "src/"
+			"Uecode\\Daemon": ""
 		}
-	}
+	},
+	"target-dir": "Uecode/Daemon"
 }
