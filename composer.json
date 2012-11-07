@@ -25,6 +25,5 @@
 		"psr-0": {
 			"Uecode\\Daemon": ""
 		}
-	},
-	"target-dir": "Uecode/Daemon"
+	}
 }
