@@ -12,42 +12,42 @@ abstract class Config
 	/**
 	 * System is unusable (will throw a Exception as well)
 	 */
-	static public $LOG_EMERG = 0;
+	const LOG_EMERG = 0;
 
 	/**
 	 * Immediate action required (will throw a Exception as well)
 	 */
-	static public $LOG_ALERT = 1;
+	const LOG_ALERT = 1;
 
 	/**
 	 * Critical conditions (will throw a Exception as well)
 	 */
-	static public $LOG_CRIT = 2;
+	const LOG_CRIT = 2;
 
 	/**
 	 * Error conditions
 	 */
-	static public $LOG_ERR = 3;
+	const LOG_ERR = 3;
 
 	/**
 	 * Warning conditions
 	 */
-	static public $LOG_WARNING = 4;
+	const LOG_WARNING = 4;
 
 	/**
 	 * Normal but significant
 	 */
-	static public $LOG_NOTICE = 5;
+	const LOG_NOTICE = 5;
 
 	/**
 	 * Informational
 	 */
-	static public $LOG_INFO = 6;
+	const LOG_INFO = 6;
 
 	/**
 	 * Debug-level messages
 	 */
-	static public $LOG_DEBUG = 7;
+	const LOG_DEBUG = 7;
 
 	/**
 	 * Available log levels
