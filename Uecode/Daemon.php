@@ -330,7 +330,7 @@ class Daemon
 		// Map PHP error level to Daemon log level
 		if ( !isset( Config::$_logPhpMapping[ $errno ][ 0 ] ) ) {
 			$this->warning( 'Unknown PHP errorno: %s', $errno );
-			$phpLvl = Config::$LOG_ERR;
+			$phpLvl = Config::LOG_ERR;
 		} else {
 			list( $logLvl, $phpLvl ) = Config::$_logPhpMapping[ $errno ];
 		}
@@ -520,7 +520,7 @@ class Daemon
 
 		if ( is_string( $level ) ) {
 			if ( false === ( $l = array_search( $level, Config::$_logLevels ) ) ) {
-				$this->log( Config::$LOG_EMERG, 'No such loglevel: ' . $level );
+				$this->log( Config::LOG_EMERG, 'No such loglevel: ' . $level );
 			} else {
 				$level = $l;
 			}
@@ -605,7 +605,7 @@ class Daemon
 
 		// Make the tail of log massage.
 		$log_tail = '';
-		if ( $level < Config::$LOG_NOTICE ) {
+		if ( $level < Config::LOG_NOTICE ) {
 			if ( $this->opt( 'logFilePosition' ) ) {
 				if ( $this->opt( 'logTrimAppDir' ) ) {
 					$file = substr( $file, strlen( $this->opt( 'appDir' ) ) );
@@ -635,7 +635,7 @@ class Daemon
 		$str_level = str_pad( Config::$_logLevels[ $level ] . '', 8, ' ', STR_PAD_LEFT );
 		$log_line  = $str_date . ' ' . $str_level . ': ' . $str . $log_tail; // $str_ident
 
-		$non_debug     = ( $level < Config::$LOG_DEBUG );
+		$non_debug     = ( $level < Config::LOG_DEBUG );
 		$log_succeeded = true;
 		$log_echoed    = false;
 
@@ -679,10 +679,10 @@ class Daemon
 		}
 
 		// These are pretty serious errors
-		if ( $level < Config::$LOG_ERR ) {
+		if ( $level < Config::LOG_ERR ) {
 			// An emergency logentry is reason for the deamon to
 			// die immediately
-			if ( $level === Config::$LOG_EMERG ) {
+			if ( $level === Config::LOG_EMERG ) {
 				$this->_die();
 			}
 		}
