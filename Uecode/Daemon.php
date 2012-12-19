@@ -518,6 +518,7 @@ class Daemon
 		$level     = $arguments[ 0 ];
 		$format    = $arguments[ 1 ];
 
+
 		if ( is_string( $level ) ) {
 			if ( false === ( $l = array_search( $level, Config::$_logLevels ) ) ) {
 				$this->log( Config::LOG_EMERG, 'No such loglevel: ' . $level );
@@ -551,7 +552,6 @@ class Daemon
 		$function = (string)@$dbg_bt[ ( $history - 1 ) ][ 'function' ];
 		$file     = (string)@$dbg_bt[ $history ][ 'file' ];
 		$line     = (string)@$dbg_bt[ $history ][ 'line' ];
-
 		return $this->log( $level, $str, $file, $class, $function, $line );
 	}
 
@@ -809,16 +809,14 @@ class Daemon
 		$appPidLocation = $this->opt( 'appPidLocation' );
 
 		if ( !file_exists( $appPidLocation ) ) {
-			$this->warning( 'Pid File not found' );
+			echo "Pid File not found\n";
 			unset( $appPidLocation );
-
 			return false;
 		}
 
 		$pid = $this->fileread( $appPidLocation );
 		if ( !$pid ) {
-			$this->warning( 'Pid File empty' );
-
+			echo "Pid File empty\n";
 			return false;
 		}
 
@@ -827,10 +825,8 @@ class Daemon
 			// Not responding so unlink pidfile
 			@unlink( $appPidLocation );
 
-			return $this->warning(
-				'Orphaned pidfile found and removed: ' .
-					'{appPidLocation}. Previous process crashed?'
-			);
+			echo "Orphaned pidfile found and removed: {$appPidLocation}. Previous process crashed?\n";
+			return false;
 		}
 
 		return true;
