@@ -1,6 +1,5 @@
 {
 	"name":        "uecode/daemon",
-	"version":     "0.1.1",
 	"type":        "library",
 	"description": "Daemon Class",
 	"keywords":    ["php", "daemon" ],
