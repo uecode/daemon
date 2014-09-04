@@ -200,7 +200,7 @@ class Options
             $reason = "Option ".$name." not found in definitions";
         }
         
-        $definition = $this->_definitions[$name];
+        $definition = isset($this->_definitions[$name]) ? $this->_definitions[$name] : null;
         
         if (!$reason && !isset($definition["type"])) {
             $reason = "Option ".$name.":type not found in definitions";
@@ -209,9 +209,9 @@ class Options
         // Compile array of allowd main & subtypes
         $_allowedTypes = $this->_allowedTypes($definition["type"]);
         
+        $type_valid = false;
         // Loop over main & subtypes to detect matching format
         if (!$reason) {
-            $type_valid = false;
             foreach ($_allowedTypes as $type_a=>$sub_types) {
                 foreach ($sub_types as $type_b) {
                     
@@ -355,8 +355,7 @@ class Options
         
         // Compile array of allowd main & subtypes
         $_allowedTypes = $this->_allowedTypes($definition["type"]);        
-        
-        $type  = $definition["type"];
+
         $value = $definition["default"];
 
         if (isset($_allowedTypes["string"]) && !is_bool($value)) {
@@ -409,7 +408,7 @@ class Options
             $parts              = explode(".", $fullvar);
             list($source, $var) = $parts;
         }
-        $var_use            = false;
+
         $var_key            = $source.".".$var;
         
         // Allowed

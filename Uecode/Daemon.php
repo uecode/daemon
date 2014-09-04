@@ -152,7 +152,7 @@ class Daemon
 	 *
 	 * @param integer $sleepSeconds Optionally put your daemon to rest for X s.
 	 *
-	 * @return void
+	 * @return bool
 	 * @see start()
 	 * @see stop()
 	 */
@@ -324,7 +324,7 @@ class Daemon
 	{
 		// Ignore suppressed errors (prefixed by '@')
 		if ( error_reporting() == 0 ) {
-			return;
+			return false;
 		}
 
 		// Map PHP error level to Daemon log level
@@ -338,7 +338,7 @@ class Daemon
 		// Log it
 		// No shortcuts this time!
 		$this->log(
-			$logLvl,
+			isset($logLvl) ? $logLvl : null,
 			'[PHP ' . $phpLvl . '] ' . $errstr,
 			$errfile,
 			__CLASS__,
@@ -566,14 +566,14 @@ class Daemon
 	 * It logs a string according to error levels specified in array:
 	 * Config::$_logLevels (0 is fatal and handles daemon's death)
 	 *
-	 * @param integer $level    What function the log record is from
-	 * @param string  $str      The log record
-	 * @param string  $file     What code file the log record is from
-	 * @param string  $class    What class the log record is from
-	 * @param string  $function What function the log record is from
-	 * @param integer $line     What code line the log record is from
+	 * @param integer     $level    What function the log record is from
+	 * @param string      $str      The log record
+	 * @param bool|string $file     What code file the log record is from
+	 * @param bool|string $class    What class the log record is from
+	 * @param bool|string $function What function the log record is from
+	 * @param bool|int    $line     What code line the log record is from
 	 *
-	 * @throws Exception
+	 * @throws Daemon\Exception
 	 * @return boolean
 	 * @see _logLevels
 	 * @see logLocation
@@ -713,6 +713,7 @@ class Daemon
 		$options = $this->getOptions();
 
 		// Try to write init.d
+		//TODO: Config::$_osObj is not defined 
 		$res = Config::$_osObj->writeAutoRun( $options, $overwrite );
 		if ( false === $res ) {
 			if ( is_array( $this->_os->errors ) ) {
@@ -967,7 +968,6 @@ class Daemon
 
 		if ( !chmod( $pidFilePath, 0644 ) ) {
 			return $this->err( 'Unable to chmod pidfile: %s', $pidFilePath );
-			;
 		}
 
 		return true;
@@ -1158,6 +1158,7 @@ class Daemon
 	{
 		// Create Option Object if nescessary
 		if ( !$this->_os ) {
+			//TODO: need review, call dynamic method as static
 			$this->_os = OS::factory();
 		}
 
