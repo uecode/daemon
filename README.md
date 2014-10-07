@@ -1,4 +1,4 @@
-# Daemon Class #
+# Daemon Class - NO LONGER SUPPORTING#
 
 ## Install ##
 
